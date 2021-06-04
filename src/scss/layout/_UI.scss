@@ -1,0 +1,61 @@
+html{
+    background: $fondo;
+    height: 100vh;
+}
+
+body::-webkit-scrollbar{
+    width: .6rem;
+    background-color: $blanco;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: $rojo;
+    border-radius: 5rem;
+}
+
+h1{
+    font-size: 15rem;
+    font-weight: 100;
+    letter-spacing: .4rem;
+    @include tablet{
+        font-size: 12rem;
+    }
+}
+
+header{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.contenedor-foody{
+    height: fit-content;
+}
+.section{
+    display: none;
+    background-color: $blanco;
+    &:first-of-type{
+        display: block;
+        margin: 0auto;
+    }
+    h2{
+        letter-spacing: .3rem;
+        display: block;
+        background-color: $rojo;
+        color: $blanco;
+        margin-top: 3rem;
+        font-weight: 10;
+        font-size: 3rem;
+        padding: 1rem;
+    }
+    p{
+        font-family: $texto;
+        font-size: 4rem;
+        font-weight: 700;
+        color:$negro;
+    }
+}
+#foody{
+background-image:url("../img/foody.webp");
+background-position: center;
+background-size: contain;
+background-repeat: no-repeat;
+}

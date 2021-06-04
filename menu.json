@@ -1,0 +1,76 @@
+{
+    "menu": [
+        {
+            "id": 1,
+            "nombre": "Sandwich",
+            "precio": 30,
+            "img": "./build/img/015-sandwich.webp"
+        },
+        {
+            "id": 2,
+            "nombre": "Jocho",
+            "precio": 60,
+            "img": "./build/img/011-hot-dog.webp"
+        },
+        {
+            "id": 3,
+            "nombre": "Hamburguesa",
+            "precio": 100,
+            "img": "./build/img/010-burger.webp"
+        },
+        {
+            "id": 4,
+            "nombre": "Pizza",
+            "precio": 180,
+            "img": "./build/img/009-pizza.webp"
+        },
+        {
+            "id": 5,
+            "nombre": "Palomas",
+            "precio": 30,
+            "img": "./build/img/008-popcorn.webp"
+        },
+        {
+            "id": 6,
+            "nombre": "Papas",
+            "precio": 45,
+            "img": "./build/img/007-chips.webp"
+        },
+        {
+            "id": 7,
+            "nombre": "Nachos",
+            "precio": 50,
+            "img": "./build/img/006-nachos.webp"
+        },
+        {
+            "id": 8,
+            "nombre": "Birra",
+            "precio": 35,
+            "img": "./build/img/005-mexican-beer.webp"
+        },
+        {
+            "id": 9,
+            "nombre": "Keka",
+            "precio": 30,
+            "img": "./build/img/004-quesadilla.webp"
+        },
+        {
+            "id": 10,
+            "nombre" : "Chesco",
+            "precio": 25,
+            "img": "./build/img/003-soft-drink.webp"
+        },
+        {
+            "id": 10,
+            "nombre" : "Burrito",
+            "precio": 50,
+            "img": "./build/img/002-burrito.webp"
+        },
+        {
+            "id": 10,
+            "nombre" : "Taco",
+            "precio": 35,
+            "img": "./build/img/001-taco.webp"
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+.tabs{
+    @include grid(3,2rem);
+    button{
+        background-color: $blanco;
+        color: $verde;
+        font-size: 3.5rem;
+        border: none;
+        border-radius: 1rem;
+        transition: all 500ms;
+        padding: 1rem;
+
+        &:hover{
+            background-color: $rojo;
+            color: $blanco;
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        &:first-child{
+            margin-left: 2rem;
+            @include tablet{
+                margin-left: 15rem;
+        }
+    }
+        &:last-child{
+            margin-right: 2rem;
+            @include tablet{
+                margin-right: 15rem;
+        }
+    }
+}
+}
