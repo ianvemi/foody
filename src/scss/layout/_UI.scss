@@ -3,6 +3,7 @@ html{
     height: 100vh;
 }
 
+
 body::-webkit-scrollbar{
     width: .6rem;
     background-color: $blanco;
@@ -13,7 +14,12 @@ body::-webkit-scrollbar-thumb{
     border-radius: 5rem;
 }
 
+body{
+    width: fit-content;
+}
+
 h1{
+    margin:0px auto;
     font-size: 15rem;
     font-weight: 100;
     letter-spacing: .4rem;
@@ -26,6 +32,16 @@ header{
     margin-top: 2rem;
     margin-bottom: 1rem;
 }
+
+footer{
+    height: 5rem;
+    font-size: 3rem;
+    line-height: 5rem;
+    margin: 1rem;
+    font-weight: 10;
+    color: $rojo;
+}
+
 .contenedor-foody{
     height: fit-content;
 }
