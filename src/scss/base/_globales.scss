@@ -7,9 +7,15 @@
     font-family: 'mano';
     src: url(../fonts/mano.ttf) format('truetype');
 }
+
+@font-face {
+    font-family: 'century';
+    src: url(../fonts/CenturyGothic.ttf) format('truetype');
+}
 html {
     font-size: 62.5%;
     box-sizing: border-box;
+    width: 100vw;
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -17,15 +23,15 @@ html {
 body {
     font-family: $fuente_principal;
     font-size: 1.6rem;
+    width: 100%;
 }
 p {
     color: $blanco;
     font-size: 2rem;
     margin: 0;
 }
-.contenedor {
-    width: 95%;
-    max-width: 1200px;
+.contenedor-foody{
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -53,4 +59,7 @@ h2 {
 h3 {
     font-size: 3rem;
     text-align: center;
+}
+button{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }

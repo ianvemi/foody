@@ -21,31 +21,42 @@
 
             </header>
             <nav class="tabs">
-                <button type="button">Menu</button>
-                <button type="button">Info</button>
-                <button type="button">Total</button>
+                <button type="button" data-tab="1">Menu</button>
+                <button type="button"data-tab="2">Info</button>
+                <button type="button"data-tab="3">Total</button>
             </nav>
+
             <!-- foody content -->
-            <div class="section">
+            <div id="s-1" class="section">
                 <h2>Bienvenido</h2>
                 <p class="text-center">¿Qué vas a llevar?
                 </p>
                 <div id="comida" class="lista-foody"></div>
             </div>
 
-            <div class="section">
+            <div id="s-2" class="section">
                 <h2>Info</h2>
             </div>
 
-            <div class="section">
+            <div id="s-3" class="section">
                 <h2>Total</h2>
             </div>
 
+            <div class="paginacion">
+                <button id="anterior">
+                    <
+                </button>
+                <button id="siguiente">
+                    >
+                </button>
+            </div>
+
         </div>
+        <footer>
+            vemian
+        </footer>
     </div>
-    <footer>
-        vemian
-    </footer>
+   
     <script src="build/js/bundle.min.js"></script>
 </body>
 

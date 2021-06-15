@@ -8,6 +8,13 @@
         border-radius: 1rem;
         transition: all 500ms;
         padding: 1rem;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        margin-bottom: 1rem;
+
+        &.actual{
+            background-color: $rojo;
+            color: $blanco;
+        }
 
         &:hover{
             background-color: $rojo;
