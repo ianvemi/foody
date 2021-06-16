@@ -63,3 +63,11 @@ h3 {
 button{
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+
+input{
+    font-family: $font;
+    color: $negro;
+    background-color: transparent;
+    border: none;
+    border-bottom: 0.2rem solid $negro;
+}

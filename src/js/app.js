@@ -1,5 +1,10 @@
 let n = 1;
 
+const orden ={
+    nombre:'',
+    fecha:'',
+    pedido: []
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
@@ -19,6 +24,9 @@ function iniciarApp(){
 
     //Comprueba pag actual para mostrar u ocultar paginación
     botonesPaginador();
+
+    //Muestra el resumen del pedido o error
+    mostrarPedido();
 }
 
 
@@ -32,13 +40,12 @@ function mostrarSeccion(){
     const seccionActual = document.querySelector(`#s-${n}`);
     seccionActual.classList.add('mostrar-seccion')
 
+     //Eliminar tab anteriormente seleecionado
     const tabAnterior =  document.querySelector('.tabs .actual');
     if(tabAnterior){
         tabAnterior.classList.remove('actual');
     }
-     //Eliminar tab anteriormente seleecionado
     
-
     //Resalta el tab actual
     const tab=document.querySelector(`[data-tab="${n}"]`);
     tab.classList.add('actual');
@@ -231,9 +238,28 @@ function botonesPaginador(){
         paga.classList.remove('ocultar');
         pags.classList.remove('ocultar');
     }
-    
-
     mostrarSeccion();
+}
+
+function mostrarPedido(){
+    //Destructuring
+    let {nombre, fecha, pedido} = orden; 
+
+    //Seleccionar resumen
+    resumenDiv = document.querySelector('.contenido-resumen')
+
+
+    //Validación de objeto
+    if(Object.values(orden).includes('')){
+       const noPedido = document.createElement('P');
+       noPedido.textContent="Porfavor, rellene sus datos";
+       noPedido.classList.add('invalidar-pedido');
+
+       //Agregando al div de resumen
+       resumenDiv.appendChild(noPedido);
+    }
+    
+    
 }
 
 

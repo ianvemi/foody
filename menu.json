@@ -14,7 +14,7 @@
         },
         {
             "id": 3,
-            "nombre": "Hamburguesa",
+            "nombre": "Burger",
             "precio": 100,
             "img": "./build/img/010-burger.webp"
         },
