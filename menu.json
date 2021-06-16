@@ -61,13 +61,13 @@
             "img": "./build/img/003-soft-drink.webp"
         },
         {
-            "id": 10,
+            "id": 11,
             "nombre" : "Burrito",
             "precio": 50,
             "img": "./build/img/002-burrito.webp"
         },
         {
-            "id": 10,
+            "id": 12,
             "nombre" : "Taco",
             "precio": 35,
             "img": "./build/img/001-taco.webp"

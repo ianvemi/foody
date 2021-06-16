@@ -27,6 +27,9 @@ function iniciarApp(){
 
     //Muestra el resumen del pedido o error
     mostrarPedido();
+
+    //Almacena el nombre del pedido en el objeto
+    nombrePedido();
 }
 
 
@@ -61,7 +64,7 @@ function cambiarSeccion(){
         runner.addEventListener('click', (e) =>{
             e.preventDefault();
             n = parseInt(e.target.dataset.tab);
-            console.log(n);
+            // console.log(n);
 
 
             //Llamando la función mostrar sección
@@ -129,11 +132,16 @@ try {
             precioMenu = parseInt(precio * cant);
             precioComida.textContent= "$"+precioMenu;
             deselect();
+            // const idbuttomrem = parseInt(elemento.dataset.idComida);
+            // console.log(idbuttomrem)
+            // eliminarServicio(idbuttomrem);
+            
         }
 
         function nuevomPrecio(){
             if(cant <= 1){
                 cant = 1;
+                deselect();
             }else{
             cant = cant - 1;
             vCantidad.textContent = cant;
@@ -178,18 +186,65 @@ function seleccionarServicio(e){
     //Seleccionar forzosamente el div contenedor(id dataset)
     if(e.target.tagName === 'P' || e.target.tagName === 'IMG'){
         elemento= e.target.parentElement;
+    }else if(e.target.tagName ==='BUTTON'){
+        eliminarServicios();
+        elemento= null;
     }else{
         elemento= e.target;
     }
-
-   
-    if(elemento.classList.contains('selected')){
+    // console.log(elemento);
+    if(elemento === null){
+        return;
+    }
+   //clikeando  y poner quitar selected
+    else if(elemento.classList.contains('selected')){
         elemento.classList.remove('selected');
+        const idRem = parseInt(elemento.dataset.idComida);
+        eliminarServicio(idRem);
 
     }else{
         elemento.classList.add('selected');
+        // console.log(elemento.dataset.idComida);
+        // console.log(elemento.firstElementChild.textContent);
+        // console.log(elemento.firstElementChild.nextElementSibling.textContent)
+        const comidaObj ={
+            id: parseInt(elemento.dataset.idComida),
+            nombre:elemento.firstElementChild.textContent,
+            precio:elemento.firstElementChild.nextElementSibling.textContent
+        }
+            agregarServicio(comidaObj);
+       
+        
+        // console.log(comidaObj);
     }
     // console.log(elemento);
+}
+
+function eliminarServicio(Idremove){
+    const {pedido} = orden;
+    orden.pedido = pedido.filter( pedidoNum => pedidoNum.id !== Idremove);
+     console.log(orden);
+}
+//Eliminar elementos seleccionados cuando clikeo en agregar cantidad
+function eliminarServicios(){
+    const {pedido} = orden;
+    orden.pedido = pedido.filter( pedidoNum => pedidoNum.id == null);
+     console.log(orden);
+}
+
+// function eliminarServicios(Idbuttonrem){
+//     const {pedido} = orden;
+//     orden.pedido = pedido.filter(function pedidoNum(){
+//         pedidoNum.id == Idbuttonrem;
+//     });
+//     console.log(orden);
+// }
+
+
+function agregarServicio(comidaObjeto){
+    const {pedido} = orden;
+    orden.pedido = [...pedido, comidaObjeto];
+     console.log(orden);
 }
 
 //Funcion utilizada para quitar selección de productos cuando se cambia alguna cantidad y asi actualizar precio.
@@ -229,7 +284,7 @@ function botonesPaginador(){
     const paga = document.querySelector('#anterior');
 
     if(n ===1){
-        console.log("se oculta el boton de anterior")
+        // console.log("se oculta el boton de anterior");
         paga.classList.add('ocultar');
     } else if (n===3){
         pags.classList.add('ocultar');
@@ -258,8 +313,24 @@ function mostrarPedido(){
        //Agregando al div de resumen
        resumenDiv.appendChild(noPedido);
     }
+}
+
+function nombrePedido(){
+    const nombreInput = document.querySelector('#Nombre');
     
-    
+    nombreInput.addEventListener('input', (e)=>{
+        console.log(e.target.value);
+        const nombreIn = e.target.value.trim();
+
+        if(nombreIn === '' || nombreIn.length < 3){
+            console.log("Nombre invalido")
+        }else{
+            orden.nombre=nombreIn;
+        }
+
+        console.log(orden);
+    })
+
 }
 
 
