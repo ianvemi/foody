@@ -30,6 +30,12 @@ function iniciarApp(){
 
     //Almacena el nombre del pedido en el objeto
     nombrePedido();
+
+    //Almacena la fecha del pedido en el obj
+    fechaPedido();
+
+    //Desabilitar fecha anterior
+    deshabilitarFechaAnterior();
 }
 
 
@@ -210,7 +216,8 @@ function seleccionarServicio(e){
         const comidaObj ={
             id: parseInt(elemento.dataset.idComida),
             nombre:elemento.firstElementChild.textContent,
-            precio:elemento.firstElementChild.nextElementSibling.textContent
+            precio:elemento.firstElementChild.nextElementSibling.textContent,
+            cantidad: elemento.children[5].textContent
         }
             agregarServicio(comidaObj);
        
@@ -223,13 +230,13 @@ function seleccionarServicio(e){
 function eliminarServicio(Idremove){
     const {pedido} = orden;
     orden.pedido = pedido.filter( pedidoNum => pedidoNum.id !== Idremove);
-     console.log(orden);
+    //  console.log(orden);
 }
 //Eliminar elementos seleccionados cuando clikeo en agregar cantidad
 function eliminarServicios(){
     const {pedido} = orden;
     orden.pedido = pedido.filter( pedidoNum => pedidoNum.id == null);
-     console.log(orden);
+    //  console.log(orden);
 }
 
 // function eliminarServicios(Idbuttonrem){
@@ -244,7 +251,7 @@ function eliminarServicios(){
 function agregarServicio(comidaObjeto){
     const {pedido} = orden;
     orden.pedido = [...pedido, comidaObjeto];
-     console.log(orden);
+    //  console.log(orden);
 }
 
 //Funcion utilizada para quitar selección de productos cuando se cambia alguna cantidad y asi actualizar precio.
@@ -289,6 +296,8 @@ function botonesPaginador(){
     } else if (n===3){
         pags.classList.add('ocultar');
         paga.classList.remove('ocultar');
+
+        mostrarPedido();
     }else {
         paga.classList.remove('ocultar');
         pags.classList.remove('ocultar');
@@ -297,12 +306,16 @@ function botonesPaginador(){
 }
 
 function mostrarPedido(){
+    
     //Destructuring
     let {nombre, fecha, pedido} = orden; 
 
     //Seleccionar resumen
-    resumenDiv = document.querySelector('.contenido-resumen')
+    const resumenDiv = document.querySelector('.contenido-resumen')
 
+    while(resumenDiv.firstChild){
+        resumenDiv.removeChild(resumenDiv.firstChild);
+    }
 
     //Validación de objeto
     if(Object.values(orden).includes('')){
@@ -311,28 +324,154 @@ function mostrarPedido(){
        noPedido.classList.add('invalidar-pedido');
 
        //Agregando al div de resumen
-       resumenDiv.appendChild(noPedido);
+        resumenDiv.appendChild(noPedido);
+       
+       
+       
+    }else{
+        // console.log("Datos completos");
+        const nombrePedido = document.createElement('P');
+        const fechaPedido = document.createElement('P');
+   
+
+        nombrePedido.innerHTML = `${nombre}`;
+        fechaPedido.innerHTML = `${fecha}`;
+
+        const pedidoOrden = document.createElement('DIV');
+        pedidoOrden.classList.add('resumen-pedido');
+        
+        let total = 0;
+        //Iterar sobre los pedidos
+        pedido.forEach( runner =>{
+            const contPedido = document.createElement ('DIV');
+            contPedido.classList.add('contPedido');
+
+            const textoPedido = document.createElement('P');
+            textoPedido.textContent = runner.nombre;
+
+            const cantPedido = document.createElement('P')
+            cantPedido.textContent = `--- x${runner.cantidad}`;
+
+            const precioPedido = document.createElement('P');
+            precioPedido.textContent = runner.precio;
+
+            
+            const totalPedido = runner.precio.split('$');
+            // console.log(parseInt(totalPedido[1].trim()));
+
+            total += parseInt(totalPedido[1].trim());
+            // console.log(total);
+
+            
+
+            // console.log(contPedido)
+            // console.log(textoPedido)
+            // console.log(precioPedido)
+
+            contPedido.appendChild(textoPedido);
+            contPedido.appendChild(cantPedido);
+            contPedido.appendChild(precioPedido);
+
+
+            pedidoOrden.appendChild(contPedido);
+    
+            
+        })
+        
+        const totalDiv = document.createElement('DIV');
+        totalDiv.innerHTML =`<p>Total:<p>$${total}`;
+        totalDiv.classList.add('total');
+
+        resumenDiv.appendChild(nombrePedido);
+        resumenDiv.appendChild(fechaPedido);
+        resumenDiv.appendChild(pedidoOrden);
+        resumenDiv.appendChild(totalDiv);
+        
     }
+
 }
 
 function nombrePedido(){
     const nombreInput = document.querySelector('#Nombre');
     
     nombreInput.addEventListener('input', (e)=>{
-        console.log(e.target.value);
+        // console.log(e.target.value);
         const nombreIn = e.target.value.trim();
 
         if(nombreIn === '' || nombreIn.length < 3){
-            console.log("Nombre invalido")
+            mostrarAlerta("Nombre de 3 letras minimo", 'error')
         }else{
             orden.nombre=nombreIn;
         }
 
-        console.log(orden);
-    })
-
+        // console.log(orden);
+    });
 }
 
+function mostrarAlerta(mensaje, tipo){
+    //Solo 1 alerta
+    const alertaPrevia= document.querySelector('.alerta');
+
+    if(alertaPrevia){
+        return;
+    }
+
+    const alerta = document.createElement('DIV');
+    alerta.textContent = mensaje;
+    alerta.classList.add('alerta');
+
+    if(tipo === 'error'){
+        alerta.classList.add('error');
+    }
+
+    const formulario = document.querySelector('.formulario');
+    formulario.appendChild(alerta);
+
+    //Eliminar la alerta despues de n segundos
+    setTimeout(()=>{
+        alerta.remove();
+    }, 2000);
+}
+
+function fechaPedido(){
+    const fechaIn = document.querySelector('#Fecha');
+    fechaIn.addEventListener('input', e =>{
+        orden.fecha = fechaIn.value;
+
+        // const dia = new Date(e.target.value);
+        // const opciones ={
+        //     year: 'numeric',
+        //     month: 'long',
+        //     weekday: 'long'
+        // }
+    
+        // console.log(dia.toLocaleDateString('es-ES', opciones))
+    })
+}
+
+
+function deshabilitarFechaAnterior(){
+    const Infecha = document.querySelector('#Fecha');
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+
+    const fechaDesact = `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
+
+ 
+
+    //Formato 2020-11-20days
+    
+    // console.log(fechaDesact)
+
+    Infecha.min = fechaDesact;
+    Infecha.max = fechaDesact;
+    Infecha.value= fechaDesact;
+    orden.fecha= fechaDesact;
+
+    // console.log(Infecha.min)
+}
 
 
 

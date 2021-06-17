@@ -44,3 +44,13 @@
     }
 }
 
+
+.alerta{
+    font-family: $font;
+    color: $blanco;
+    background-color: $rojo;
+    font-size: 2rem;
+    padding: 1rem;
+    margin: 0px auto;
+    text-align: center;
+}
