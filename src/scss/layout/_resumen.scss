@@ -27,7 +27,7 @@ span{
     .contPedido{
         @include grid(2,0rem);
         p{
-            font-size: 4rem;
+            font-size: 3.5rem;
             text-align: center;
             display: block;
             margin-top: 0rem;
@@ -74,16 +74,22 @@ span{
         .total{
             font-family: $font;
             p{
-                font-size: 5.5rem;
+                font-size: 4.8rem;
+                letter-spacing: 0.1rem;
                 display: block;
                 background-color: $rojo;
                 color: $blanco;
+                font-family: $font;
+                padding: 1rem;
+                margin: 0px auto;
                 &:first-child{
                     margin: 0px auto;
                     padding: 0px;
+                    margin-top: 3rem;
                     font-size: 4rem;
                     background-color: transparent;
                     color: $negro;
+                    font-family: $texto;
                 }
             }
         }
