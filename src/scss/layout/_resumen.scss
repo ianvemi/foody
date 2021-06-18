@@ -38,6 +38,16 @@ span{
             }
             &:nth-child(2){
                 border-top: 0.4rem solid $rojo;
+                font-family: $texto;
+                font-weight: bold;
+                font-size: 3rem;
+                letter-spacing: 0.5rem;
+            }
+            &:nth-child(3){
+                font-family: $font;
+                font-weight: bold;
+                letter-spacing: 0.2rem;
+                font-size: 4rem;
             }
             
         }
@@ -47,18 +57,22 @@ span{
 
         .invalidar-pedido{
             display: block;
-            width: 50%;
+            width: 70%;
             margin: 0px auto;
-            background-color: $rojo;
+            background-color: $verde;
             text-align: center;
             color: $blanco;
             font-family: $font;
-            font-size: 2.5rem;
-            padding: 3rem;
+            font-size: 2.5rem !important;
+            padding: 4rem;
+            border-radius: 1rem;
+            margin-top: 10rem;
+            margin-bottom: 10rem;
         
         }
 
         .total{
+            font-family: $font;
             p{
                 font-size: 5.5rem;
                 display: block;
